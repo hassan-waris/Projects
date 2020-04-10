@@ -1,12 +1,15 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+
+using namespace std;
+
 int main()
 {
-	std::string s;
-	std::cin >> s;
+	string s;
+	cin >> s;
 	if( equal(s.begin(), s.begin() + s.size()/2, s.rbegin()) )
-		std::cout << "is a palindrome.\n";
+		cout << "is a palindrome.\n";
 	else
-		std::cout << "is NOT a palindrome.\n";
+		cout << "is NOT a palindrome.\n";
 }
