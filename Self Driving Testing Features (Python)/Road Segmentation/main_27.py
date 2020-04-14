@@ -222,8 +222,9 @@ def run():
 
 if __name__ == '__main__':
 
-    data_dir = join(expanduser("~"), 'code', 'self-driving-car', 'project_12_road_segmentation', 'data')
-    runs_dir = join(expanduser("~"), 'majinbu_home', 'road_segmentation_prediction')
-    # runs_dir = join(expanduser("~"), 'code', 'self-driving-car', 'project_12_road_segmentation', 'runs')
+    data_dir = join(expanduser("~"), 'code', 'self-driving-car', 'road_segmentation', 'data')
+    
+    runs_dir = join(expanduser("~"), 'hassan-home', 'road_segmentation_prediction')
+    # runs_dir = join(expanduser("~"), 'code', 'self-driving-car', 'road_segmentation', 'runs')
 
     run()
