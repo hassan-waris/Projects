@@ -8,15 +8,15 @@ import matplotlib.pyplot as plt
 def perform_augmentation(batch_x, batch_y):
        def mirror(x):
         return x[:, ::-1, :]
-
-    def augment_in_hsv_space(x_hsv):
-        x_hsv = np.float32(cv2.cvtColor(x_hsv, cv2.COLOR_RGB2HSV))
-        x_hsv[:, :, 0] = x_hsv[:, :, 0] * random.uniform(0.9, 1.1)   # change hue
-        x_hsv[:, :, 1] = x_hsv[:, :, 1] * random.uniform(0.5, 2.0)   # change saturation
-        x_hsv[:, :, 2] = x_hsv[:, :, 2] * random.uniform(0.5, 2.0)   # change brightness
-        x_hsv = np.uint8(np.clip(x_hsv, 0, 255))
-        return cv2.cvtColor(x_hsv, cv2.COLOR_HSV2RGB)
-
+        
+def augment_in_hsv_space(x_hsv):
+    x_hsv = np.float32(cv2.cvtColor(x_hsv, cv2.COLOR_RGB2HSV))
+    x_hsv[:,:,0] = x_hsv[:,:,0] * random.uniform(0.9, 1.1)    #changes Hue
+    x_hsv[:,:,1] = x_hsv[:,:,1] * random.uniform(0.5, 2.0)    #changes Saturation
+    x_hsv[:,:,2] = x_hsv[:,:,2] * random.uniform(0.5, 2.0)    #changes Brightness
+    x_hsv = np.unit8(np.clip(x_hsv, 0, 255))
+    return cv2.cvtColor(x_hsv, cv2.COLOR_HSV2RGB)
+        
     batch_x_aug = np.copy(batch_x)
     batch_y_aug = np.copy(batch_y)
 
@@ -35,8 +35,9 @@ def perform_augmentation(batch_x, batch_y):
 
 
 def debug_visualize_data_augmentation():
-
-    from main_27 import gen_batch_function  # keep here to avoid circular dependencies
+    
+    from helper import gen_batch_function
+#    from main_27 import gen_batch_function  # keep here to avoid circular dependencies
 
     # Parameters
     data_dir = join(expanduser("~"), 'code', 'self-driving-car', 'project_12_road_segmentation', 'data')
