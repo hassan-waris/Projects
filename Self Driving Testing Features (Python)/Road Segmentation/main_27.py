@@ -24,7 +24,7 @@ def gen_batch_function(data_folder, image_shape):
 
     def get_batches_fn(batch_size):
      
-        image_paths = glob(os.path.join('data', 'image_2', '*.png'))
+        image_paths = glob(os.path.join('data/data_road', 'image_2', '*.png'))
         label_paths = {
             re.sub(r'_(lane|road)_', '_', os.path.basename(path)): path
             for path in glob(os.path.join(data_folder, 'gt_image_2', '*_road_*.png'))}
@@ -218,13 +218,3 @@ def run():
                  image_input, labels, keep_prob, learning_rate)
 
         save_inference_samples(runs_dir, data_dir, sess, (image_h, image_w), logits, keep_prob, image_input)
-
-
-if __name__ == '__main__':
-
-    data_dir = join(expanduser("~"), 'code', 'self-driving-car', 'road_segmentation', 'data')
-    
-    runs_dir = join(expanduser("~"), 'hassan-home', 'road_segmentation_prediction')
-    # runs_dir = join(expanduser("~"), 'code', 'self-driving-car', 'road_segmentation', 'runs')
-
-    run()

@@ -73,8 +73,3 @@ def debug_visualize_data_augmentation():
 
         plt.show(block=False)
         plt.waitforbuttonpress()
-
-
-if __name__ == '__main__':
-
-    debug_visualize_data_augmentation()

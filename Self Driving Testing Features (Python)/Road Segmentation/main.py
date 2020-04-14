@@ -112,7 +112,7 @@ def train_nn(sess, training_epochs, batch_size, get_batches_fn, train_op, cross_
         print('Epoch: {:02d}  -  Loss: {:.03f}'.format(e, loss_this_epoch / args.batches_per_epoch))
 
 def perform_tests():
-    tests.test_for_kitti_dataset('data')
+    tests.test_for_kitti_('data/data_road')
     tests.test_load_vgg(load_vgg, tf)
     tests.test_layers(layers)
     tests.test_optimize(optimize)
@@ -162,23 +162,3 @@ def parse_arguments():
     parser.add_argument('--augmentation', type=bool, default=True, help='Perform augmentation in training', metavar='')
     parser.add_argument('--gpu', type=int, default=0, help='Which GPU to use', metavar='')
     return parser.parse_args()
-
-
-if __name__ == '__main__':
-
-    data_dir = join(expanduser("~"), 'code', 'self-driving-car', 'project_12_road_segmentation', 'data')
-    runs_dir = join(expanduser("~"), 'majinbu_home', 'road_segmentation_prediction')
-
-    args = parse_arguments()
-
-    # Appropriately set GPU device
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
-    print('Using GPU: {:02d}.'.format(args.gpu))
-
-    # Turn off augmentation during tests
-    should_do_augmentation = False
-    perform_tests()
-
-    # Restore appropriate augmentation value
-    should_do_augmentation = args.augmentation
-    run()
